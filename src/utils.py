@@ -40,4 +40,13 @@ def get_string_numeric_stats(df):
 
     return str_stats, numeric_stats
 
+def get_date_range(ser, format=None):
+    ser = pd.to_datetime(ser, format=None)
+    return ser.agg(['min', 'max'])
+
+# TODO: Check for index alignment
+def show_data_on_cond(cond, *ser_or_df):
+    data_df = pd.concat(ser_or_df, axis=1)
+
+    return data_df[cond]
 
