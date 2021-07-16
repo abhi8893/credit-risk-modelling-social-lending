@@ -47,6 +47,12 @@ def get_date_range(ser, format=None):
 # TODO: Check for index alignment
 def show_data_on_cond(cond, *ser_or_df):
     data_df = pd.concat(ser_or_df, axis=1)
-
     return data_df[cond]
+
+def convert_to_time_since(ser, ref_date, units, round_val=True):
+    time_diff = (ser - pd.to_datetime(ref_date))/np.timedelta(1, units)
+
+    if round_val:
+        return time_diff.round().astype('Int64')
+
 
